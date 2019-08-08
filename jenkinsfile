@@ -1,0 +1,42 @@
+pipeline{
+ agent any
+ stages {
+		stage ('compilation') {
+		 steps {
+				echo "Compilation Success!";
+			}
+		}
+		stage ('unit test') { 
+		 steps {
+				echo "Unit Test Success!";
+			}
+		}
+		stage ('integration test') { 
+		 steps {
+				echo "Integration Test Success!";
+			}
+		}
+		stage ('Deploy') { 
+		 steps {
+				echo "Deploy Success!";
+			}
+		}
+	}
+post {
+		always {
+			echo 'Always Run'
+		}
+		success {
+			echo 'This will run only if successful'
+		}
+		failure {
+			echo 'This will run only if failed'
+		}
+		unstable {
+			echo 'This will run only if the run was marked unstable'
+		}
+		changed {
+			echo 'This will run only if the state of the pipeline has changed'
+		}
+	}
+}
